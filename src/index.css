@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Layout idea: a training-simulator console. The terminal sits centre stage on a deep navy
+   bench; panels around it are instruments. Colour carries meaning, never decoration. */
+@theme {
+  --color-bg: #0a1022;
+  --color-bench: #0e162c;
+  --color-panel: #131c36;
+  --color-panel2: #1a2545;
+  --color-line: #2a3760;
+  --color-ink: #e8ecf7;
+  --color-muted: #93a0c2;
+  --color-data: #58a6ff;      /* transaction data */
+  --color-ok: #3fd195;        /* successful authentication / authorisation */
+  --color-crypto: #ffa24a;    /* cryptographic operations */
+  --color-danger: #ff6170;    /* sensitive information, warnings */
+  --color-net: #b094ff;       /* banking networks, infrastructure */
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@layer base {
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body { margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
+button { cursor: pointer; font: inherit; color: inherit; }
+button:disabled { cursor: not-allowed; opacity: .45; }
+:focus-visible { outline: 2px solid var(--color-data); outline-offset: 2px; border-radius: 4px; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.scroll { overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
+.hex { font-family: var(--font-mono); word-break: break-all; overflow-wrap: anywhere; }
+}
+
+@keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pulse-ring { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
